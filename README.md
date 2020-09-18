@@ -15,6 +15,12 @@ styled.button`
 
 <br><br><br>
 
+## Features
+ - Zero dependencies.
+ - [TypeScript support](#typescript-support).
+ - Write less characters.
+ - Tests with 100% coverage.
+
 ## Installation
 ```bash
 npm i shorted-theme
@@ -38,7 +44,7 @@ const theme = {
   }
 }
 
-const t = shorted(theme)
+const t = shorted(theme) // 👈 short your theme then use everywhere.
 
 const Button = styled.button`
   color: ${t.colors.primary};
@@ -47,6 +53,11 @@ const Button = styled.button`
   font-size: ${t.fontSizes.regular};
 `
 ```
+
+## TypeScript Support
+`shorted-theme` use all your typings.
+
+![](.github/assets/typescript-support.png)
 
 ### Suggestion
 

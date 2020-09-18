@@ -27,7 +27,8 @@
   "scripts": {
     "test": "jest",
     "compile": "npm run build -- --noEmit",
-    "build": "tsc --project tsconfig.json"
+    "build": "tsc --project tsconfig.json",
+    "postversion": "git push origin && git push origin --tags"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
