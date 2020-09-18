@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "author": "Rubens Mariuzzo <rubens@mariuzzo.com>",
-  "main": "index.js",
-  "types": "./dist/shorted-theme.d.ts",
+  "main": "dist/shorted-theme.js",
+  "types": "dist/shorted-theme.d.ts",
   "files": [
     "src",
     "dist"
