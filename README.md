@@ -1,20 +1,6 @@
 # ![shorted-theme - Shorted theme references for Styled Components.](.github/assets/banner.svg)
 
-**Instead of writing a function to reference a theme prop:**
-
-```ts
-styled.button`
-  color: ${(props) => props.theme.colors.primary};
-`
-```
-
-**... use a _`shorted-theme`_ reference:**
-
-```ts
-styled.button`
-  color: ${t.colors.primary};
-`
-```
+![Comparison: before and after](.github/assets/comparison.png)
 
 <br><br><br>
 
