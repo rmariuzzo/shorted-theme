@@ -7,18 +7,20 @@ describe('functionify', () => {
       string: 'test',
       boolean: true,
       nested: {
-        number: 456,
+        number: 456
       }
     }
     const fnObject = functionify(object)
-    expect(fnObject).toEqual(expect.objectContaining<typeof object>({
-      number: expect.any(Function),
-      string: expect.any(Function),
-      boolean: expect.any(Function),
-      nested: {
-        number: expect.any(Function)
-      }
-    }))
+    expect(fnObject).toEqual(
+      expect.objectContaining<typeof object>({
+        number: expect.any(Function),
+        string: expect.any(Function),
+        boolean: expect.any(Function),
+        nested: {
+          number: expect.any(Function)
+        }
+      })
+    )
     expect(fnObject.number({ theme: object })).toBe(object.number)
     expect(fnObject.string({ theme: object })).toBe(object.string)
     expect(fnObject.boolean({ theme: object })).toBe(object.boolean)

@@ -5,16 +5,18 @@ describe('shorted', () => {
     const theme = {
       a: {
         b: {
-          c: 'test value',
-        },
-      },
-    }
-    expect(shorted(theme)).toEqual(expect.objectContaining({
-      a: {
-        b: {
-          c: expect.any(Function)
+          c: 'test value'
         }
       }
-    }))
+    }
+    expect(shorted(theme)).toEqual(
+      expect.objectContaining({
+        a: {
+          b: {
+            c: expect.any(Function)
+          }
+        }
+      })
+    )
   })
 })

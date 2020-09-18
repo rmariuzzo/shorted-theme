@@ -1,12 +1,12 @@
 import { traverse } from '../src/traverse'
 
-describe('traverse', ()=> {
+describe('traverse', () => {
   it('should return expected value when traversing an object using a real path', () => {
     const object = {
       number: 123,
       nested: {
-        number: 456,
-      },
+        number: 456
+      }
     }
     expect(traverse(object, ['number'])).toBe(object.number)
     expect(traverse(object, ['nested', 'number'])).toBe(object.nested.number)
@@ -16,7 +16,7 @@ describe('traverse', ()=> {
     const object = {
       number: 123,
       nested: {
-        number: 456,
+        number: 456
       }
     }
     expect(traverse(object, ['bad path'])).toBeUndefined()
