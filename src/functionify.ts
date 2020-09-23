@@ -1,10 +1,10 @@
 import { ThemeProps, DefaultTheme } from 'styled-components'
 import { traverse } from './traverse'
 
-type Functionified<T> = {
-  [key in keyof T]: T[key] extends Record<string, unknown>
-    ? Functionified<T[key]>
-    : (props: ThemeProps<T>) => T[key]
+type Functionified<Theme, Target> = {
+  [key in keyof Target]: Target[key] extends Record<string, unknown>
+    ? Functionified<Theme, Target[key]>
+    : (props: ThemeProps<Theme>) => Target[key]
 }
 
 /**
@@ -12,22 +12,23 @@ type Functionified<T> = {
  * @param target The target object.
  * @param path The path to the property to convert into a function.
  */
-export const functionify = <T = DefaultTheme>(
-  target: T,
+export const functionify = <Theme = DefaultTheme, Target = any>(
+  target: Target,
   path: Array<string> = []
-): Functionified<T> => {
+): Functionified<Theme, Target> => {
   return Object.keys(target).reduce<Record<any, any>>((p, key) => {
     const fullPath = [...path, key]
-    if (typeof target[key as keyof T] === 'function') {
-      p[key] = target[key as keyof T]
+    if (typeof target[key as keyof Target] === 'function') {
+      p[key] = target[key as keyof Target]
     } else if (
-      ['string', 'number', 'boolean'].includes(typeof target[key as keyof T])
+      ['string', 'number', 'boolean'].includes(
+        typeof target[key as keyof Target]
+      )
     ) {
-      p[key] = (props: ThemeProps<DefaultTheme>) =>
-        traverse(props.theme, fullPath)
+      p[key] = (props: ThemeProps<Target>) => traverse(props.theme, fullPath)
     } else {
-      p[key] = functionify(target[key as keyof T], fullPath)
+      p[key] = functionify(target[key as keyof Target], fullPath)
     }
     return p
-  }, {}) as Functionified<T>
+  }, {}) as Functionified<Theme, Target>
 }
